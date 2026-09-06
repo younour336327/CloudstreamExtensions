@@ -39,7 +39,7 @@ jobs:
         run: |
           cd src
           chmod +x gradlew
-          ./gradlew makePluginsJson
+          ./gradlew make makePluginsJson
           cp **/build/*.cs3 ../builds/ || true
           cp build/plugins.json ../builds/ || true
 
@@ -53,5 +53,5 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "Build"
+          git commit -m "Build Plugins"
           git push

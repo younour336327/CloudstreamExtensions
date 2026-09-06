@@ -1,0 +1,8 @@
+{
+  "name": "Younour Cloudstream Repository",
+  "description": "Autonomously built Cloudstream repository",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/younour336327/CloudstreamExtensions/builds/plugins.json"
+  ]
+}

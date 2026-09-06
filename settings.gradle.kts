@@ -1,2 +1,2 @@
 rootProject.name = "CloudstreamExtensions"
-include(":AkwamProvider")
+// Add your provider modules here using: include(":YourProviderName")

@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
-    id("cloudstream.plugin")
+    id("org.jetbrains.kotlin.android")
+    id("com.lagradost.cloudstream3.plugin")
 }
 
 cloudstream {

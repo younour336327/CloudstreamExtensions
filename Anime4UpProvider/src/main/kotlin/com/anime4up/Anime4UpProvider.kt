@@ -15,7 +15,7 @@ class Anime4UpProvider : MainAPI() {
         val home = document.select("div.episodes-card-container, div.col-anime, div.anime-card").mapNotNull { element ->
             val title = element.select("h3 a, .anime-card-title a, a.title").text()
             val href = element.select("h3 a, .anime-card-title a, a.title").attr("href")
-            val posterUrl = element.select("img").attr("data-src").ifEmpty { element.select(\> "img").attr("src") }
+            val posterUrl = element.select("img").attr("data-src").ifEmpty { element.select("img").attr("src") }
             if (title.isBlank() || href.isBlank()) return@mapNotNull null
             newAnimeSearchResponse(title, href, TvType.Anime) {
                 this.posterUrl = posterUrl

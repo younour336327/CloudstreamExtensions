@@ -11,7 +11,7 @@ class Anime4UpProvider : MainAPI() {
     override val hasMainPage = true
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val document = app.get("/anime-list").document
+        val document = app.get("$mainUrl/anime-list").document
         val home = document.select("div.episodes-card-container, div.col-anime, div.anime-card").mapNotNull { element ->
             val title = element.select("h3 a, .anime-card-title a, a.title").text()
             val href = element.select("h3 a, .anime-card-title a, a.title").attr("href")
@@ -25,7 +25,7 @@ class Anime4UpProvider : MainAPI() {
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
-        val document = app.get("/?s=").document
+        val document = app.get("$mainUrl/?s=$query").document
         return document.select("div.col-anime, div.anime-card").mapNotNull { element ->
             val title = element.select(".anime-card-title a, h3 a").text()
             val href = element.select(".anime-card-title a, h3 a").attr("href")
@@ -60,7 +60,7 @@ class Anime4UpProvider : MainAPI() {
     override suspend fun loadLinks(data: String, isCasting: Boolean, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit): Boolean {
         val document = app.get(data).document
         val videoUrl = document.select("iframe, video source").attr("src")
-        if (videoUrl.isNotEmpty()) {
+        if (!videoUrl.isNullOrEmpty()) {
             callback.invoke(
                 ExtractorLink(
                     source = name,
